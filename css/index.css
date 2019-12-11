@@ -1,0 +1,184 @@
+/*背景图*/
+body{
+	background-image: url(../images/bg.png);
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+	font-family: "ch";
+}
+html, body { min-width: 1400px;}
+
+@font-face {
+	font-family: "ch";
+	src: url(../font/ch.ttf);
+}
+
+
+/*导航栏*/
+
+nav{
+	text-align: center;
+	margin-top: 50px;
+	position: relative;
+}
+
+nav div{
+	display: inline-block;
+	padding: 20px;
+	border-radius: 10px;
+}
+
+nav div:hover{
+	background: #fff;
+}
+
+nav div:hover a{
+	color: #0f6cff;
+}
+
+nav div a{
+	color: #fff;
+}
+
+/*logo*/
+.logo{
+	position: absolute;
+	left: 200px;
+	margin: 0;
+}
+
+.logo img{
+	width: 60px;
+}
+/*注册按钮*/
+.register{
+	position: absolute;
+	right: 200px;
+	background: #1add97;
+	border-radius: 30px;
+	padding:  20px 60px;
+}
+
+
+/*内容区域*/
+.content h1,
+.content h3{
+	text-align: center;
+}
+
+.content h1{
+	color: #fff;
+	margin-top: 40px;
+	font-weight: 100;
+	font-size: 45px;
+}
+
+.content h3{
+	color: #fff;
+	margin-bottom: 40px;
+	font-weight: 100;
+}
+
+.content .Login-box{
+	width: 520px;
+	padding: 40px;
+	background: #fff;
+	border-radius: 20px;
+	margin: 0 auto;
+	box-sizing: border-box;
+}
+
+.content .Login-box .Login-content p{
+	color: #575f84;
+	text-align: left;
+}
+
+.content .Login-box .Login-content span{
+	color: #878787;
+	font-size: 12px;
+}
+
+.content .Login-box .Login-content input{
+	width: 100%;
+	border: none;
+	background: #f3f6ff;
+	height: 40px;
+	padding: 0 10px;
+	line-height: 40px;
+	font-size: 14px;
+	box-sizing: border-box;
+}
+
+.content .Login-box .Login-content .Login-button{
+	margin-top: 30px;
+	height: 58px;	
+	line-height: 58px;
+}
+
+.content .Login-box .Login-content .Login-button a{
+	float: right;
+}
+
+.content .Login-box .Login-content .Login-button button{
+	float: left;
+	background: #1add97;
+	border-radius: 30px;
+	padding:  20px 60px;
+	border: none;
+	color: #fff;
+}
+
+.content .Login-box .Login-content .Login-button button:hover{
+	
+	background: #7c4fe6;
+	
+}
+
+
+
+
+
+/*解析*/
+.parsing{
+	font-size: 0;
+	margin-top: 100px;
+}
+
+.parsing form{
+	text-align: center;
+}
+
+.parsing form input{
+	display: inline-block;
+	padding: 0;
+	border: none;
+	width: 600px;
+	height: 45px;
+	padding: 0 10px;
+	font-size: 16px;
+	outline: none;
+	border-radius: 10px 0 0 10px;
+}
+.parsing form .submit{
+	background: #1add97;
+	width: 100px;
+	height: 45px;
+	cursor: pointer;
+	color: #fff;
+	font-weight: 100;
+	border-radius: 0 10px 10px 0;
+}
+.parsing form .submit:hover{
+	background: #7c4fe6;
+	color: #fff;
+}
+
+
+.instructions{
+	width: 720px;
+	height: 300px;
+	background: #fff;
+	margin: 0 auto;
+	margin-top: 100px ;
+	border-radius: 10px;
+	padding: 20px;
+}
