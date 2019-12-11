@@ -14,13 +14,21 @@ function Registered() {
 
 	//4.响应状态
 	a.addEventListener("readystatechange", function() {
-		if(this.readyState === 4 && this.status === 201) {
+		// 关于 readyState 的解释 https://blog.csdn.net/alex8046/article/details/40587939
+		// 不为4的时候客户端调用无意义
+		if (this.readyState !== 4) {
+			return
+		}
+
+		// 解析响应为json
+		var response = JSON.parse(this.responseText)
+
+		if (this.status >= 200 && this.status < 300) {
 			alert("注册成功,点击确定跳转至登录页面");
 			window.location.href="index.html"
 		}
-		if(this.status > 300){
-			alert("注册失败");
-		}
+
+		alert(response.message || "注册失败");
 	});
 
 	a.open("POST", "http://api.hicoder.cc/auth/register");
