@@ -12,6 +12,13 @@ html, body { min-width: 1400px;}
 	src: url(../font/ch.ttf);
 }
 
+/* 去除按钮聚焦边框 */
+button:focus{
+outline: none;
+border-color: transparent;
+cursor: pointer;
+}
+
 
 /*导航栏*/
 
