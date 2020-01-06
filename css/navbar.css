@@ -1,0 +1,45 @@
+/*导航栏*/
+
+nav {
+    text-align: center;
+    margin-top: 50px;
+    position: relative;
+}
+
+nav div {
+    display: inline-block;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+nav div:hover {
+    background: #fff;
+}
+
+nav div:hover a {
+    color: #0f6cff;
+}
+
+nav div a {
+    color: #fff;
+}
+
+/*logo*/
+.logo {
+    position: absolute;
+    left: 200px;
+    margin: 0;
+}
+
+.logo img {
+    width: 60px;
+}
+
+/*注册按钮*/
+.register {
+    position: absolute;
+    right: 200px;
+    background: #1add97;
+    border-radius: 30px;
+    padding: 20px 60px;
+}

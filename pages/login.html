@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>设计</title>
+
+	<!-- common styles -->
+	<link rel="stylesheet" type="text/css" href="../css/Normalize.css.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/index.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/navbar.css"/>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+				integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	<!-- custom styles -->
+	<link rel="stylesheet" type="text/css" href="../css/login&register.css">
+
+	<!-- common js -->
+	<script src="../js/storage.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+					integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+					crossorigin="anonymous"></script>
+</head>
+
+<body>
+<nav>
+	<h1 class="logo">
+		<img src="../images/logo.png"/>
+	</h1>
+	<div>
+		<a href="">首页</a>
+	</div>
+	<div>
+		<a href="">素材网站</a>
+	</div>
+	<div>
+		<a href="">使用帮助</a>
+	</div>
+	<div>
+		<a href="">常见问题解答</a>
+	</div>
+	<div>
+		<a href="">关于我们</a>
+	</div>
+	<div>
+		<a href="">联系我们</a>
+	</div>
+	<div class="register">
+		<a href="registered.html">注册</a>
+	</div>
+</nav>
+
+<main class="content">
+	<h1>用户登录</h1>
+	<h3>整合全网平面素材资源,VIP通道下载速度拉满</h3>
+	<div class="Login-box">
+		<div class="Login-content">
+			<form>
+				<p>邮箱</p>
+				<input type="email" name="" id="email" value="" class="iconfont" placeholder="&#xe64f;&nbsp;请输入邮箱"/>
+				<span>注册时填写的邮箱</span>
+				<p>密码</p>
+				<input type="password" name="" id="password" value="" class="iconfont" placeholder="&#xe64b;&nbsp;请输入密码"/>
+				<span>16位大小写字母或数字组成</span>
+				<div class="Login-button clearfix">
+					<a href="">忘记密码？</a>
+					<button type="button" value="提交" onclick="login()">登录</button>
+				</div>
+
+			</form>
+		</div>
+	</div>
+</main>
+
+<script>
+  function login() {
+
+    //1.获取表单数据
+    //	var email = document.getElementById('email').value;
+    //	var password = document.getElementById('password').value;
+
+    //2.拼接表单数据
+    var params = 'email=' + "657685705@qq.com" + '&password=' + "657685705";
+
+    //3.创建XML对象
+    var data = params;
+    var a = new XMLHttpRequest;
+
+    a.withCredentials = true;
+
+    //4.判断服务器状态
+    a.addEventListener("readystatechange", function () {
+      if (this.readyState === 4 && this.status === 200) {
+        document.cookie = 'token=' + this.responseText;
+        var cookie = getCookie('token')
+        var auth = JSON.parse(getCookie('token'))
+        var token = auth.token_type + ' ' + auth.access_token
+        window.localStorage.setItem('auth', this.responseText)
+        var localAuth = window.localStorage.getItem('auth')
+        alert("登录成功，点击确定跳转至主界面");
+        window.location.href = 'index.html';
+      }
+    });
+
+
+    a.open("POST", "http://api.hicoder.cc/auth/login");
+    a.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    a.setRequestHeader("Accept", "application/json");
+    a.send(data);
+
+
+    // a.setRequestHeader("Authorization", token)
+  }
+</script>
+
+</body>
+</html>

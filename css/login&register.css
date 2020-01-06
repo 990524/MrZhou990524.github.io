@@ -1,0 +1,54 @@
+.content .Login-box{
+    width: 520px;
+    padding: 40px;
+    background: #fff;
+    border-radius: 20px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.content .Login-box .Login-content p{
+    color: #575f84;
+    text-align: left;
+}
+
+.content .Login-box .Login-content span{
+    color: #878787;
+    font-size: 12px;
+}
+
+.content .Login-box .Login-content input{
+    width: 100%;
+    border: none;
+    background: #f3f6ff;
+    height: 40px;
+    padding: 0 10px;
+    line-height: 40px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.content .Login-box .Login-content .Login-button{
+    margin-top: 30px;
+    /*height: 58px;*/
+    /*line-height: 58px;*/
+}
+
+.content .Login-box .Login-content .Login-button a{
+    float: right;
+}
+
+.content .Login-box .Login-content .Login-button button{
+    float: left;
+    background: #1add97;
+    border-radius: 30px;
+    padding:  20px 60px;
+    border: none;
+    color: #fff;
+}
+
+.content .Login-box .Login-content .Login-button button:hover{
+
+    background: #7c4fe6;
+
+}
