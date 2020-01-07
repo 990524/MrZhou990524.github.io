@@ -13,21 +13,21 @@ window._helpers = {
   /**
    * 拼接URL
    *
-   * @param schema
+   * @param host
    * @param path
    * @returns {string}
    */
-  combineUrl: (schema, path) => {
-    schema = schema[schema.length - 1] === '/'
-      ? schema.substr(0, schema.length - 1)
-      : schema
+  combineUrl: (host, path) => {
+    host = host[host.length - 1] === '/'
+      ? host.substr(0, host.length - 1)
+      : host
 
-    if (schema.indexOf('http://') === -1 || schema.indexOf('https://') === -1) {
-      schema = `http://${schema}`
+    if (host.indexOf('http://') === -1 && host.indexOf('https://') === -1) {
+      host = `http://${host}`
     }
 
     path = path[0] === '/' ? path.substr(1) : path
 
-    return `${schema}/${path}`
+    return `${host}/${path}`
   }
 }
