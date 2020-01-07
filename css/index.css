@@ -65,7 +65,6 @@ nav div a{
 	padding:  20px 60px;
 }
 
-
 /*内容区域*/
 .content h1,
 .content h3{
@@ -113,6 +112,7 @@ nav div a{
 	line-height: 40px;
 	font-size: 14px;
 	box-sizing: border-box;
+	outline-color: red;
 }
 
 .content .Login-box .Login-content .Login-button{
@@ -140,9 +140,28 @@ nav div a{
 	
 }
 
+/* 登录界面注册按钮 */
+.content .Login-box .Login-content .register-button{
+	margin-top: 30px;
+	height: 58px;	
+	line-height: 58px;
+}
 
+.content .Login-box .Login-content .register-button a{
+	float: right;
+}
 
-
+.content .Login-box .Login-content .register-button button{
+	float: left;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	background: #1add97;
+	border-radius: 30px;
+	padding:  20px 60px;
+	border: none;
+	color: #fff;
+}
 
 /*解析*/
 .parsing{

@@ -3,7 +3,10 @@ function Registered() {
 	//1.获取表单数据
 	var email = document.getElementById('email').value;
 	var password = document.getElementById('password').value;
-
+	//验证表单数据是否正确
+	if (email === '' || email === null || password === '' || password === null) {
+		alert("请检查邮箱或密码是否为空");
+	}
 	//2.拼接表单数据
 	var params = 'email=' + email + '&password=' + password;
 
@@ -25,7 +28,7 @@ function Registered() {
 
 		if (this.status >= 200 && this.status < 300) {
 			alert("注册成功,点击确定跳转至登录页面");
-			window.location.href="index.html"
+			window.location.href = "index.html"
 		}
 
 		alert(response.message || "注册失败");
