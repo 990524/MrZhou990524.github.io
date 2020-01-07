@@ -81,6 +81,13 @@
 </main>
 
 <script>
+	window.onload = () => {
+		// 如果已登陆，跳转至首页
+		if (_store.getters.isLogin()) {
+			location.href = 'index.html'
+		}
+	}
+
   function handleSubmit() {
 		const data = _helpers.getFormData('form')
 

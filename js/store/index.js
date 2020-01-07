@@ -25,8 +25,12 @@
     }
   }
 
+  const getters = {
+    isLogin: () => !!state.token
+  }
+
   // 维护公共数据
-  window._store = { state, actions }
+  window._store = { state, actions, getters }
 
   if (_store.state.token) {
     _store.actions.fetchUserInfo()
