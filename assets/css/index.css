@@ -13,7 +13,7 @@ body {
 
 @font-face {
 	font-family: "ch";
-	src: url(../assets/font/ch.ttf);
+	src: url(../font/ch.ttf);
 }
 
 /* 去除按钮聚焦边框 */

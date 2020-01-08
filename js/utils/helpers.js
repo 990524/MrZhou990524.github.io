@@ -17,7 +17,7 @@ window._helpers = {
    * @param path
    * @returns {string}
    */
-  combineUrl: (host, path) => {
+  combineUrl: (host, path = '') => {
     host = host[host.length - 1] === '/'
       ? host.substr(0, host.length - 1)
       : host

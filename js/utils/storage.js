@@ -42,3 +42,4 @@ window._storage = {
     setLocalStorage: () => {},
     getLocalStorage: () => {}
 }
+

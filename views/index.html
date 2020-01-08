@@ -1,71 +1,111 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<link rel="icon" href="../assets/images/favicon-20200107043544975.ico" />
-		<title>黄牛0527</title>
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="../assets/images/favicon-20200107043544975.ico"/>
+  <title>黄牛0527</title>
 
-		<!-- common styles -->
-		<link rel="stylesheet" type="text/css" href="../assets/css/Normalize.css.css" />
-		<link rel="stylesheet" type="text/css" href="../assets/css/index.css" />
-		<link rel="stylesheet" type="text/css" href="../assets/css/navbar.css" />
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-		 crossorigin="anonymous">
+  <!-- common styles -->
+  <link rel="stylesheet" type="text/css" href="../assets/css/Normalize.css.css"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/index.css"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/navbar.css"/>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
 
-		<!-- custom styles -->
-		<link rel="stylesheet" type="text/css" href="../assets/css/parsing.css">
+  <!-- custom styles -->
+  <link rel="stylesheet" type="text/css" href="../assets/css/parsing.css">
 
-		<!-- common js -->
-		<script src="../js/utils/storage.js"></script>
-		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-		 crossorigin="anonymous"></script>
-		<script src="../js/utils/popup.js"></script>
-	</head>
+  <!-- common js -->
+  <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+          crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+          integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+          crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="../js/plugins/vue.js"></script>
+  <script src="../env.js"></script>
+  <script src="../js/utils/request.js"></script>
+  <script src="../js/utils/storage.js"></script>
+  <script src="../js/utils/helpers.js"></script>
+  <script src="../js/api/user.js"></script>
+  <script src="../js/store/index.js"></script>
+  <script src="../js/utils/popup.js"></script>
+</head>
 
-	<body>
-		<nav>
-			<h1 class="logo">
-				<img src="../assets/images/logo.png" height="50"/>
-			</h1>
-			<div>
-				<a href="login.html">首页</a>
-			</div>
-			<div>
-				<a href="">素材网站</a>
-			</div>
-			<div>
-				<a href="">使用帮助</a>
-			</div>
-			<div>
-				<a href="">常见问题解答</a>
-			</div>
-			<div>
-				<a href="">关于我们</a>
-			</div>
-			<div>
-				<a href="">联系我们</a>
-			</div>
-			<div class="user-image">
-				<img src="../assets/images/用户.jpg" width="50">
-			</div>
-		</nav>
-		<div class="parsing">
-			<form action="">
-				<input type="text" id="" value="" />
-				<input type="submit" value="解析" class="submit">
-			</form>
+<body>
+<main id="app">
+  <nav>
+    <h1 class="logo">
+      <img src="../assets/images/logo.png" height="50"/>
+    </h1>
+    <div>
+      <a href="login.html">首页</a>
+    </div>
+    <div>
+      <a href="">素材网站</a>
+    </div>
+    <div>
+      <a href="">使用帮助</a>
+    </div>
+    <div>
+      <a href="">常见问题解答</a>
+    </div>
+    <div>
+      <a href="">关于我们</a>
+    </div>
+    <div>
+      <a href="">联系我们</a>
+    </div>
+    <div class="user-image">
+      <img v-if="user.avatar" :src="user.avatar | staticUrl" width="50">
+      <img v-else width="50">
+    </div>
+  </nav>
 
-		</div>
+  <div class  ="parsing">
+    <form @submit.prevent="handleParse">
+      <input type="text" id="" value="" />
+      <input type="submit" value="解析" class="submit" />
+    </form>
+  </div>
 
-		<div class="instructions">
-			<p>1、下载地址解析支持的网站有，千图网、千库网、包图网、摄图网、昵图网、等等</p>
-			<p>2、解析不成功时，请注意检查粘贴的下载地址是否正确，是否按照我站提出的格式粘贴</p>
-			<p>3、如遇到网站不能正常工作时请及时联系我们，或者联系我们帮忙下载急需的素材</p>
-			<p>4、墙裂！建议各位金主爸爸添加我们的官方QQ群，跟其他金主爸爸上班吹吹牛摸摸鱼混下班时间</p>
-			<p>5、各种活动，优惠信息，一手消息在官方QQ群里公布</p>
-			<p>6、联系方式移步至头部导航栏联系我们</p>
-			<p>6、大多数常见问题可在头部导航栏里找到解决办法</p>
-		</div>
-	</body>
+  <div class="instructions">
+    <p>1、下载地址解析支持的网站有，千图网、千库网、包图网、摄图网、昵图网、等等</p>
+    <p>2、解析不成功时，请注意检查粘贴的下载地址是否正确，是否按照我站提出的格式粘贴</p>
+    <p>3、如遇到网站不能正常工作时请及时联系我们，或者联系我们帮忙下载急需的素材</p>
+    <p>4、墙裂！建议各位金主爸爸添加我们的官方QQ群，跟其他金主爸爸上班吹吹牛摸摸鱼混下班时间</p>
+    <p>5、各种活动，优惠信息，一手消息在官方QQ群里公布</p>
+    <p>6、联系方式移步至头部导航栏联系我们</p>
+    <p>6、大多数常见问题可在头部导航栏里找到解决办法</p>
+  </div>
+</main>
+</body>
+
+<script>
+  // 使对象可响应
+  const store = Vue.observable(_store)
+
+  new Vue({
+    el: '#app',
+    filters: {
+      staticUrl(url) {
+        return _helpers.combineUrl(_env.baseUrl, url)
+      }
+    },
+    computed: {
+      isLogin() {
+        return store.getters.isLogin()
+      },
+      user() {
+        return store.state.user
+      }
+    },
+    methods: {
+      handleParse() {
+        console.log('parse')
+      }
+    }
+  })
+</script>
 </html>
