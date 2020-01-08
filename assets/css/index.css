@@ -1,0 +1,64 @@
+/*背景图*/
+body {
+	background-image: url(../images/bg.png);
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+	font-family: "ch" !important;
+}
+
+html,
+body {
+	min-width: 1400px;
+}
+
+@font-face {
+	font-family: "ch";
+	src: url(../assets/font/ch.ttf);
+}
+
+/* 去除按钮聚焦边框 */
+button:focus {
+	outline: none;
+	border-color: transparent;
+	cursor: pointer;
+}
+
+/*内容区域*/
+.content h1,
+.content h3 {
+	text-align: center;
+}
+
+.content h1 {
+	color: #fff;
+	margin-top: 40px;
+	margin-bottom: 40px;
+	font-weight: 100;
+	font-size: 45px;
+}
+
+.content h3 {
+	color: #fff;
+	margin-bottom: 40px;
+	font-weight: 100;
+}
+
+/* 覆盖样式冲突 */
+a:hover {
+	text-decoration: none !important;
+}
+
+/* 提示框样式*/
+#popUp {
+	width: 25rem;
+	padding: 1.25rem;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 1.875rem;
+	margin: 0 auto;
+	background-color: #EEF2FD;
+	color: #6e7076;
+	border-radius: 0.625rem;
+	display: none;
+}

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="icon" href="../assets/images/favicon-20200107043544975.ico" />
+		<title>黄牛0527</title>
+
+		<!-- common styles -->
+		<link rel="stylesheet" type="text/css" href="../assets/css/Normalize.css.css" />
+		<link rel="stylesheet" type="text/css" href="../assets/css/index.css" />
+		<link rel="stylesheet" type="text/css" href="../assets/css/navbar.css" />
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+		 crossorigin="anonymous">
+
+		<!-- custom styles -->
+		<link rel="stylesheet" type="text/css" href="../assets/css/login&register.css">
+
+		<!-- common js -->
+		<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+		 crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		 crossorigin="anonymous"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script src="../env.js"></script>
+		<script src="../js/utils/request.js"></script>
+		<script src="../js/utils/storage.js"></script>
+		<script src="../js/utils/helpers.js"></script>
+		<script src="../js/api/user.js"></script>
+		<script src="../js/store/index.js"></script>
+		<script src="../js/utils/popup.js"></script>
+	</head>
+
+	<body>
+		<nav>
+			<h1 class="logo">
+				<img src="../assets/images/logo.png" />
+			</h1>
+			<div>
+				<a href="index.html">首页</a>
+			</div>
+			<div>
+				<a href="">素材网站</a>
+			</div>
+			<div>
+				<a href="">使用帮助</a>
+			</div>
+			<div>
+				<a href="">常见问题解答</a>
+			</div>
+			<div>
+				<a href="">关于我们</a>
+			</div>
+			<div>
+				<a href="">联系我们</a>
+			</div>
+			<div class="register">
+				<a href="login.html">登录</a>
+			</div>
+		</nav>
+
+		<main class="content">
+			<h1>用户注册</h1>
+			<h3>整合全网平面素材资源,VIP通道下载速度拉满</h3>
+			<div class="Login-box">
+				<div class="Login-content">
+					<form>
+						<div class="form-item">
+							<p>邮箱</p>
+							<input type="email" name="email" class="iconfont" placeholder="&#xe603;&nbsp;请输入邮箱" />
+							<span class="tips">支持所有邮箱格式</span>
+						</div>
+
+						<div class="form-item">
+							<p>密码</p>
+							<input type="password" name="password" class="iconfont" placeholder="&#xe64b;&nbsp;请输入密码" />
+							<span class="tips">16位大小写字母或数字组成</span>
+						</div>
+
+						<div class="form-item">
+							<p>确认密码</p>
+							<input type="password" name="password_confirm" class="iconfont" placeholder="&#xe64b;&nbsp;请确认密码" />
+							<span class="tips">16位大小写字母或数字组成</span>
+						</div>
+
+						<div class="Login-button clearfix">
+							<button type="button" value="提交" onclick="handleSubmit()">注册</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</main>
+	</body>
+
+	<script>
+		window.onload = () => {
+			// 如果已登陆，跳转至首页
+			if (_store.getters.isLogin()) {
+				location.href = 'index.html'
+			}
+		}
+
+		function handleSubmit() {
+			const data = _helpers.getFormData('form')
+
+			// 数据验证
+			validate(data, async confirm => {
+				if (!confirm) {
+					// TODO 消息提示 验证失败
+					return
+				}
+
+				try {
+					// 请求注册API
+					await _api.user.register(data)
+
+					// TODO 消息提示 注册成功
+
+					location.href = 'login.html'
+				} catch ({
+					message,
+					errors
+				}) {
+					if (message) {
+						// TODO 消息提示 message
+					}
+
+					if (errors) {
+						for (key in errors) {
+							setFormItemTip(key, errors[key][0], 'red')
+						}
+					}
+				}
+			})
+		}
+
+		/**
+		 * 表单验证
+		 *
+		 * @param data
+		 * @param callback
+		 * @returns {Promise<*>}
+		 */
+		function validate(data, callback = null) {
+			const verify = () => {
+				// 验证规则
+				const rules = {
+					email: ({
+						email
+					}, callback) => !email && callback('请输入邮箱'),
+					password: ({
+						password
+					}, callback) => !password && callback('请输入密码'),
+					password_confirm: ({
+						password,
+						password_confirm
+					}, callback) => {
+						if (!password_confirm) return callback('请输入确认密码')
+						if (password !== password_confirm) return callback('两次密码不一致')
+					}
+				}
+
+				// 是否通过验证
+				let pass = true
+
+				for (const key in data) {
+					// 存储错误消息
+					let msg = null
+
+					// 验证并提取错误消息
+					rules[key](data, (err) => (msg = err))
+
+					// 渲染错误消息及样式
+					msg ? setFormItemTip(key, msg, 'red') : setFormItemTip(key)
+
+					if (pass === true && msg !== null) pass = false
+				}
+
+				return pass
+			}
+
+			// 传递了回调函数则调用，否则返回Promise
+			return typeof callback === 'function' ?
+				callback(verify(data)) :
+				new Promise((resolve, reject) => verify(data) ? resolve() : reject('验证失败'))
+		}
+
+		// 用于保存表单项原始提示样式
+		const origin = {}
+
+		/**
+		 * 设置表单项提示内容
+		 *
+		 * @param name
+		 * @param content
+		 * @param color
+		 */
+		function setFormItemTip(name, content = null, color = null) {
+			const tipDom = $('form').find(`input[name=${name}]`).siblings('span.tips')
+
+			// 保存初始化提示样式
+			if (!origin[name]) {
+				origin[name] = {
+					html: tipDom.html(),
+					color: tipDom.css('color')
+				}
+			}
+
+			tipDom.html(content || origin[name].html).css('color', color || origin[name].color)
+		}
+	</script>
+
+</html>
