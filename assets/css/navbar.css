@@ -42,6 +42,7 @@ nav div a {
 /*用户头像*/
 
 .user-image {
+	cursor: pointer;
 	position: absolute;
 	right: 200px;
 	background: #FFFFFF;

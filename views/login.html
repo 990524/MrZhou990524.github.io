@@ -73,7 +73,7 @@
 						<div class="form-item">
 							<p>密码</p>
 							<input type="password" name="password" class="iconfont" placeholder="&#xe64b;&nbsp;请输入密码" />
-							<span class="tips">16位大小写字母或数字组成</span>
+							<span class="tips">6位以上大小写字母或数字组成</span>
 						</div>
 
 						<div class="Login-button clearfix">
@@ -99,7 +99,7 @@
 				// 数据验证
 				validate(data, async confirm => {
 					if (!confirm) {
-						// TODO 消息提示 验证失败
+						PopUp('验证失败')
 						return
 					}
 
@@ -107,15 +107,15 @@
 						// 请求登陆API
 						await _store.actions.login(data)
 
-						// TODO 消息提示 登陆成功
-
 						location.href = 'index.html'
+
+						PopUp('登陆成功')
 					} catch ({
 						message,
 						errors
 					}) {
 						if (message) {
-							// TODO 消息提示 message
+							PopUp(message)
 							console.error(message)
 						}
 

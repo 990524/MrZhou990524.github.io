@@ -22,6 +22,11 @@
       state.token = jwtTokenString
 
       await actions.fetchUserInfo()
+    },
+    logout: () => {
+      state.token = null
+      state.user = {}
+      _storage.setCookie(TOKEN_KEY, '', -1)
     }
   }
 
@@ -32,7 +37,8 @@
   // 维护公共数据
   window._store = { state, actions, getters }
 
-  if (_store.state.token) {
+  if (_store.state.token && _store.state.token !== '') {
+
     _store.actions.fetchUserInfo()
   }
 }
