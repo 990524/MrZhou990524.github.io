@@ -83,7 +83,10 @@
 </body>
 
 <script>
-  // 使对象可响应
+  /**
+   * 使对象可响应
+   * @see https://cn.vuejs.org/v2/api/#Vue-observable
+   */
   const store = Vue.observable(_store)
 
   new Vue({
